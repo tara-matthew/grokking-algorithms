@@ -7,7 +7,7 @@ const twoSum = function(numbers, target) {
     let answerArray = [];
     // let prevIndices = [];
 
-    for (let i = 0; i < 3; i ++) {
+    for (let i = 0; i < numbers.length; i ++) {
         // console.log(i);
         let numberDiff = target - numbers[i];
         console.log(numberDiff);
