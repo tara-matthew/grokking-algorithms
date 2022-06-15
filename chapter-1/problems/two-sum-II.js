@@ -10,12 +10,11 @@ const twoSum = function(numbers, target) {
         let numberDiff = target - numbers[i];
         let otherNumberIndex = binarySearch(numbers, numberDiff, i);
 
-        if (otherNumberIndex && !answerArray.includes(i + 1) && !answerArray.includes(otherNumberIndex + 1)) {
+        if (otherNumberIndex) {
             answerArray.push(i + 1, otherNumberIndex + 1);
+            return answerArray;
         }
     }
-
-    return answerArray;
 };
 
 // Only return an index which isn't the same as the current index
