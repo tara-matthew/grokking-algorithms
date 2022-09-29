@@ -1,4 +1,4 @@
-function binarySearch(list, item) {
+const binarySearch = (list, item) => {
     // Low and high keep track of which part of the list to search in
     let low = 0;
     let high = list.length - 1;
@@ -12,7 +12,7 @@ function binarySearch(list, item) {
         guess = list[mid];
 
         // Found the item
-        if (guess == item) {
+        if (guess === item) {
             return mid;
         }
 
@@ -28,6 +28,4 @@ function binarySearch(list, item) {
     return null;
 }
 
-const list = [2, 5, 6, 7];
-
-console.log(binarySearch(list, 7));
+module.exports = binarySearch;
