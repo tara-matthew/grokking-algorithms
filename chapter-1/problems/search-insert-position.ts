@@ -9,7 +9,7 @@
  * @param {number} target
  * @return {number}
  */
-let searchInsert = function(nums, target) {
+const searchInsert = (nums: number[], target: number): number => {
     let low = 0;
     let high = nums.length - 1;
 
@@ -30,6 +30,8 @@ let searchInsert = function(nums, target) {
 
     return low;
 };
+
+module.exports = searchInsert;
 
 console.log(searchInsert([3, 5, 6, 8, 9], 7));
 console.log(searchInsert([4, 8, 11], 11));
