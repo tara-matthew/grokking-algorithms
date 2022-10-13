@@ -3,7 +3,7 @@
  * @param {number} h
  * @return {number}
  */
-const minEatingSpeed = function(piles, h) {
+const minEatingSpeed = (piles, h) => {
     let left = 0;
     let right = Math.max(...piles);
     let mid;
@@ -12,7 +12,6 @@ const minEatingSpeed = function(piles, h) {
     while (left <= right) {
         mid = Math.floor((left + right) / 2);
 
-        // hoursToEat = checkHours(mid, piles);
         hoursToEat = piles.reduce((sum, pile) => {
             sum += Math.ceil(pile / mid)
             return sum
@@ -30,16 +29,6 @@ const minEatingSpeed = function(piles, h) {
 
     return left;
 };
-
-function checkHours(guess, piles) {
-    let hoursTaken = 0;
-    for (let i = 0; i < piles.length; i ++) {
-        let division = piles[i] / guess;
-        hoursTaken += Math.ceil(division);
-    }
-
-    return hoursTaken;
-}
 
 const piles = [3,6,7,11];
 // const piles = [30,11,23,4,20]
