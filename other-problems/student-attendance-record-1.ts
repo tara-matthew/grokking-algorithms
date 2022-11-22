@@ -3,7 +3,7 @@
  * @return {boolean}
  */
 const checkRecord = (s) => {
-    return !(hasAbsences(s.split('')) || isLate(s.split('')));
+    return s.split('A').length <= 2 && s.indexOf("LLL") === -1
 }
 
 const isLate = (arr) => {
@@ -33,4 +33,4 @@ const hasAbsences = (arr) => {
     return arr.filter(element => element === "A").length >= 2;
 }
 
-console.log(checkRecord("PPAALLALP"));
+console.log(checkRecord("PPLLALP"));
