@@ -1,16 +1,8 @@
 const reverseString = (s)  => {
-    for (let i = 0; i < Math.floor((s.length) / 2); i++) {
-        let count = 0;
-        while (count < 1) {
-            let j = s.length - i - 1;
-            [s[i], s[j]] = [s[j], s[i]];
-            count ++;
-
-        }
+    for (let left = 0, right = s.length - 1; left < right; left ++, right --) {
+        [s[left], s[right]] = [s[right], s[left]];
     }
-
-    return s;
 };
 
-const string = ["A"," ","m","a","n",","," ","a"," ","p","l","a","n",","," ","a"," ","c","a","n","a","l",":"," ","P","a","n","a","m","a"];
+const string = ["h", "e","l","l", "o"];
 console.log(reverseString(string));
