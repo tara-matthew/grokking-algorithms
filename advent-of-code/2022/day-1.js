@@ -3,13 +3,8 @@ const input = fs.readFileSync("advent-of-code/2022/day-1.txt")
     .toString()
     .replace(/\n$/, '')
     .split("\n\n")
-
-let data = [];
-for (let i = 0; i < input.length; i ++ ) {
-    data.push(input[i].split('\n'))
-}
-
-data = data.map(arr => arr.map(item => Number(item)));
+    .map(item => item.split('\n'))
+    .map(arr => arr.map(item => Number(item)));
 
 const partOne = (elves) => {
     let best = 0;
@@ -44,5 +39,5 @@ const partTwo = (elves) => {
     });
 }
 
-console.log(partOne(data));
-console.log(partTwo(data));
+console.log(partOne(input));
+console.log(partTwo(input));
