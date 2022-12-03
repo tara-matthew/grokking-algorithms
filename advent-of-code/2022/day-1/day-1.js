@@ -9,17 +9,21 @@ const input = fs.readFileSync("advent-of-code/2022/day-1.txt")
 const partOne = (elves) => {
     let best = 0;
 
-    for (let i = 0; i < elves.length; i ++) {
-        let sum = 0;
-        for (let j = 0; j < elves[i].length; j ++) {
-            sum += elves[i][j];
-        }
-        if (sum > best) {
-            best = sum;
-        }
-    }
+    const test = elves.map(e => e.map(j => j))
 
-    return best;
+    console.log(test);
+
+    // for (let i = 0; i < elves.length; i ++) {
+    //     let sum = 0;
+    //     for (let j = 0; j < elves[i].length; j ++) {
+    //         sum += elves[i][j];
+    //     }
+    //     if (sum > best) {
+    //         best = sum;
+    //     }
+    // }
+    //
+    // return best;
 }
 
 const partTwo = (elves) => {
