@@ -28,6 +28,9 @@ const minSpeedOnTime = (dist, hour) => {
 
 };
 
+let string = "abc";
+string.toUpperCase();
+
 const calculateTimeTaken = (speed, distances) => {
     let total = 0;
     for (let i = 0; i < distances.length; i ++) {

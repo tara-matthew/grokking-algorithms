@@ -4,8 +4,6 @@ const input = fs.readFileSync("advent-of-code/2022/day-2/day-2.txt")
     .replace(/\n$/, '')
     .split("\n")
 
-// console.log(input[0].charAt(2));
-
 const partOne = (input) => {
     let score = 0;
     for (let i = 0; i < input.length; i ++) {

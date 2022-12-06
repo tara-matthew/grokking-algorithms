@@ -28,4 +28,7 @@ const binarySearch = (list, item) => {
     return null;
 }
 
+let string = "abc";
+string.toUpperCase();
+
 module.exports = binarySearch;
