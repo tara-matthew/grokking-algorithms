@@ -5,9 +5,21 @@ let matrix = fs.readFileSync("advent-of-code/2022/day-5/day-5.txt")
     .replace(/[\[\]']+/g," ")
     .split("\n")
 
-const TRANSPOSED_ARRAY_LENGTH = 3; // needs to be dynamic
-const INPUT_WIDTH = 3; // needs to be dynamic
-const INSTRUCTIONS_POSITION = 5;
+function findNumberRow(array) {
+    for (let i = 0; i < array.length; i++) {
+        if (array[i].includes(i)) {
+            return i;
+        }
+    }
+}
+
+// console.log(findNumberRow(matrix))
+
+const TRANSPOSED_ARRAY_LENGTH = findNumberRow(matrix);
+const numberLine = matrix[TRANSPOSED_ARRAY_LENGTH].split('');
+const INPUT_WIDTH = numberLine[numberLine.length - 1]; // needs to be dynamic
+// console.log(INPUT_WIDTH);
+const INSTRUCTIONS_POSITION = 10;
 
 const instructionsLines = matrix.slice(INSTRUCTIONS_POSITION); // needs to be dynamic
 const instructions = new Map;
@@ -17,7 +29,7 @@ for (let i = 0; i < instructionsLines.length; i ++) {
 }
 
 const array = [];
-for (let i = 0; i < INPUT_WIDTH; i ++) {
+for (let i = 0; i < INPUT_WIDTH - 1; i ++) {
     array[i] = [];
     for (let j = 0; j < INPUT_WIDTH; j ++) {
         let calculation = j * 4 + 1 // needs to be dynamic
@@ -25,15 +37,21 @@ for (let i = 0; i < INPUT_WIDTH; i ++) {
     }
 }
 
+// console.log(array);
+
 const transposeArray = (array, arrayLength) => {
     let newArray = [];
 
-    for (let i = 0; i < array.length; i++) {
+    for (let i = 0; i < array.length + 1; i++) {
         newArray.push([]);
     }
 
+    // console.log(newArray)
+
     for(let i = 0; i < array.length; i++){
-        for(let j = 0; j < arrayLength; j++){
+        // console.log(i)
+        for(let j = 0; j < 9; j++){
+            // console.log(array[i][j])
             newArray[j].push(array[i][j]);
         }
     }
@@ -48,18 +66,19 @@ for (let i = 0; i < INPUT_WIDTH; i ++) {
 
 const newTransposedArray = transposedArrays.map(array => array.filter(element => element !== '' && element !== ' '))
 
-// console.log(transposedArray, newTransposedArray);
-
-// const moveOneFromNumberTwoToNumberOne = newTransposedArray[0].unshift(newTransposedArray[1].shift())
-// console.log(newTransposedArray);
-
 instructions.forEach((line, index) => {
     for (let i = 0; i < line[0]; i ++) {
         newTransposedArray[line[2] - 1].unshift(newTransposedArray[line[1] - 1].shift())
     }
 })
 
-console.log(newTransposedArray);
+const topValues = [];
+newTransposedArray.forEach((line, index) => {
+    topValues.push(line[0])
+})
+
+const partOne = topValues;
+console.log(partOne);
 
 // console.log(instructions.get(0))
 
