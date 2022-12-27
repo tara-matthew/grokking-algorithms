@@ -3,14 +3,15 @@ const input = [
     [2,5,5,1,2],
     [6,5,3,3,2],
     [3,3,5,4,9],
-    [4,5,3,9,0]
+    [3,5,3,9,0]
 ];
 
 // console.log(input);
 
 class Tree {
-    constructor(height, neighbours, isLeftEdge = false, isRightEdge = false, isTopEdge = false, isBottomEdge = false, visible = false) {
+    constructor(height, neighbours, isLeftEdge = false, isRightEdge = false, isTopEdge = false, isBottomEdge = false, visible, checked) {
         this.visible = visible;
+        this.checked = checked;
         this.isLeftEdge = isLeftEdge;
         this.isRightEdge = isRightEdge;
         this.isTopEdge = isTopEdge;
@@ -31,20 +32,30 @@ for (let i = 0; i < input.length; i ++) {
     let right;
     let up;
     let down;
+    let checked;
+    let visible;
     for (let j = 0; j < input[i].length; j++) {
         if (j === 0) {
+            checked = true;
+            visible = true;
             isLeftEdge = true;
         }
 
         if (j === input[i].length - 1) {
+            checked = true;
+            visible = true;
             isRightEdge = true;
         }
 
         if (i === 0) {
+            checked = true;
+            visible = true;
             isTopEdge = true;
         }
 
         if (i === input.length - 1) {
+            checked = true;
+            visible = true;
             isBottomEdge = true;
         }
 
@@ -60,11 +71,13 @@ for (let i = 0; i < input.length; i ++) {
             down = input[i + 1][j];
         }
 
-        treeArray.push(new Tree(input[i][j], [left, right, up, down], isLeftEdge, isRightEdge, isTopEdge, isBottomEdge));
+        treeArray.push(new Tree(input[i][j], [left, right, up, down], isLeftEdge, isRightEdge, isTopEdge, isBottomEdge, visible, checked));
         isLeftEdge = false;
         isRightEdge = false;
         isTopEdge = false;
         isBottomEdge = false;
+        checked = false;
+        visible = false
     }
 }
 
@@ -86,13 +99,15 @@ const checkLeftNeighbour = (currentIndex, nextIndex) => {
 
 const checkRightNeighbour = (currentIndex, nextIndex) => {
     // Base case
+    console.log(treeArray[currentIndex]);
+    console.log(treeArray[nextIndex])
     if (treeArray[nextIndex].isRightEdge === true) {
         console.log(treeArray[currentIndex], treeArray[nextIndex])
         return treeArray[nextIndex].height < treeArray[currentIndex].height;
     }
 
     if (treeArray[nextIndex].height < treeArray[currentIndex].height) {
-        return checkRightNeighbour(currentIndex, nextIndex - 1);
+        return checkRightNeighbour(currentIndex, nextIndex + 1);
     }
 
     return false;
@@ -116,7 +131,7 @@ const checkBottomNeighbour = (currentIndex, nextIndex) => {
     console.log(treeArray[nextIndex])
     // Base case
     if (treeArray[nextIndex].isBottomEdge === true) {
-        console.log(treeArray[currentIndex], treeArray[nextIndex])
+        // console.log(treeArray[currentIndex], treeArray[nextIndex])
         return treeArray[nextIndex].height < treeArray[currentIndex].height;
     }
 
@@ -129,21 +144,42 @@ const checkBottomNeighbour = (currentIndex, nextIndex) => {
 
 
 for (let i = 0; i < treeArray.length - 1; i ++) {
-    if (treeArray[i].neighbours[0] < treeArray[i].height) {
-        // console.log(treeArray[i], treeArray[i - 1]);
-        // console.log(checkLeftNeighbour(i, i - 1));
-    }
-    if (treeArray[i].neighbours[1] < treeArray[i].height) {
-        // console.log(checkRightNeighbour(i, i  +1));
-        // console.log(treeArray[i], treeArray[i - 1]);
-        // console.log(checkLeftNeighbour(i, i - 1));
+    // console.log(i);
+    if (treeArray[i].checked === false) {
+        treeArray[i].checked = true;
+        if (treeArray[i].neighbours[0] < treeArray[i].height) {
+            // console.log(treeArray[i], treeArray[i - 1]);
+            if (treeArray[i].visible === false) treeArray[i].visible = checkLeftNeighbour(i, i - 1);
+        }
+        if (treeArray[i].neighbours[1] < treeArray[i].height) {
+            if (treeArray[i].visible === false) treeArray[i].visible = checkRightNeighbour(i, i  +1);
+            // console.log(treeArray[i], treeArray[i - 1]);
+            // console.log(checkLeftNeighbour(i, i - 1));
+        }
+        // check if an edge? But lack of neighbour should not need to do this
+        if (treeArray[i].neighbours[2] < treeArray[i].height) {
+            if (treeArray[i].visible === false) treeArray[i].visible = checkTopNeighbour(i, i - 5);
+            // console.log(treeArray[i], treeArray[i - 1]);
+            // console.log(checkLeftNeighbour(i, i - 1));
+        }
+        if (treeArray[i].neighbours[3] < treeArray[i].height) {
+            if (treeArray[i].visible === false) treeArray[i].visible = checkBottomNeighbour(i, i + 5);
+            // console.log(treeArray[i], treeArray[i - 1]);
+            // console.log(checkLeftNeighbour(i, i - 1));
+        }
     }
 
-    // check if not already an edge in the direction
 }
+// console.log(treeArray);
+
+// console.log(checkRightNeighbour(11,12))
 
 
 // console.log(checkLeftNeighbour(13, 12))
 // console.log(checkRightNeighbour(13,14))
 
-console.log(checkBottomNeighbour(19, 24))
+// console.log(checkBottomNeighbour(11, 16))
+//
+const filtered = treeArray.filter(tree => tree.visible === true)
+
+console.log(filtered.length)
