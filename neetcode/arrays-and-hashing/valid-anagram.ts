@@ -2,6 +2,13 @@
 https://leetcode.com/problems/valid-anagram/ */
 
 /* O(n) time complexity */
+/*
+If lengths not same, return false
+Make a hashmap for the counts
+Loop through str 1 and add counts for each character
+Loop through str 2, if character doesn't exist in counts map, return false
+Loop through str 2 and decrement the counts for each character
+ */
 
 /**
  * @param {string} s

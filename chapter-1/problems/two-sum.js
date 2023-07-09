@@ -51,4 +51,21 @@ function binarySearch(array, target, start = 0, end = array.length-1) {
 
 const array = [2, 3, 4, 3, 6, 7];
 // console.log(binarySearch([3,4,7,9], 3));
-console.log(twoSum(array, 6));
+// console.log(twoSum(array, 6));
+
+/**
+ * use hash map to instantly check for difference value, map will add index of last occurrence of a num, don’t use same element twice;
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function(nums, target) {
+    const hashMap = new Map;
+    console.log(hashMap);
+
+    for (let i = 0; i < nums.length; i++) {
+
+    }
+};
+
+console.log(twoSum([1,2],2));
