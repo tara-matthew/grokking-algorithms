@@ -15,6 +15,8 @@ Loop through str 2 and decrement the counts for each character
  * @param {string} t
  * @return {boolean}
  */
+
+// With object
 const isAnagram = function(s, t) {
     if (s.length !== t.length) return false;
 
@@ -24,14 +26,36 @@ const isAnagram = function(s, t) {
     }
 
     for (let character of t) {
-        if (!counts[character]) return false;
+        if (!counts[character]) {
+            console.log('here', counts[character])
+            return false;
+        }
         counts[character] --;
+        console.log(counts);
     }
 
     return true;
 };
 
-const s = "anagram";
-const t = "nagaram";
+const s = "aacc";
+const t = "ccac";
 
-console.log(isAnagram(s,t));
+// console.log(isAnagram(s,t));
+
+// With map
+const isAnagramMap = (s, t, counts = new Map()) => {
+    if (s.length !== t.length) return false;
+
+    for (let character of s) {
+        counts.set(character, (counts.get(character) || 0) + 1);
+    }
+    for (let character of t) {
+        if (! counts.has(character) || counts.get(character) === 0) {
+            return false;
+        }
+
+        counts.set(character, counts.get(character) - 1)
+
+    }
+    return true;
+};
