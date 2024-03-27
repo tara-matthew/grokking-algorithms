@@ -14,6 +14,7 @@ const mergeSort = (arr) => {
 }
 
 const sort = (leftArray, rightArray) => {
+    console.log(leftArray, rightArray)
     let sortedArray = [];
 
     while (leftArray.length && rightArray.length) {

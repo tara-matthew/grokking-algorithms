@@ -5,14 +5,6 @@
 
 /* https://leetcode.com/problems/contains-duplicate/ */
 
-/**
- * @param {number[]} nums
- * @return {boolean}
- */
-// const containsDuplicate = function(nums) {
-//     return JSON.stringify(Array.from(new Set(nums))) !== JSON.stringify(nums);
-// };
-
 const containsDuplicate = (nums): boolean => {
     const set: Set<number> = new Set(nums);
     return set.size !== nums.length;

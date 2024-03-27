@@ -21,7 +21,7 @@ const intersection = function(nums1, nums2) {
         if (searchResult !== undefined) {
             resultArray.add(searchResult);
         }
-    })
+    });
 
     return [...resultArray];
 };

@@ -46,9 +46,7 @@ const transposeArray = (array, arrayLength) => {
         newArray.push([]);
     }
 
-    // console.log(newArray)
-
-    for(let i = 0; i < array.length; i++){
+    for (let i = 0; i < array.length; i++){
         // console.log(i)
         for(let j = 0; j < 9; j++){
             // console.log(array[i][j])
@@ -75,6 +73,13 @@ instructions.forEach((line, index) => {
 const topValues = [];
 newTransposedArray.forEach((line, index) => {
     topValues.push(line[0])
+})
+
+// Part two
+instructions.forEach((line, index) => {
+    for (let i = 0; i < line[0]; i ++) {
+        newTransposedArray[line[2] - 1].unshift(newTransposedArray[line[1] - 1].shift())
+    }
 })
 
 const partOne = topValues;
