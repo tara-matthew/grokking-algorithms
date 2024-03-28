@@ -1,0 +1,3 @@
+const binarySearchKata = (array, target) => {
+
+}
