@@ -1,4 +1,0 @@
-Create a map of number values
-Loop through string from right to left
-If the character's value is the same as or greater than the one in front of it, add to total
-Otherwise subtract from total
