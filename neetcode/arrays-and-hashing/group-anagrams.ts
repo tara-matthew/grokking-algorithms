@@ -19,7 +19,6 @@ const groupAnagrams = function(strs) {
         for (let character of str) {
             hashKeys[character.charCodeAt(0) - 97] += 1;
         }
-        // console.log(hashKeys)
         // @ts-ignore
         if (!map[hashKeys]) {
             // @ts-ignore
