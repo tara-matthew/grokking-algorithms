@@ -1,0 +1,3 @@
+* Use bucket sort
+* Create a hash map with the counts of each num
+* ....
